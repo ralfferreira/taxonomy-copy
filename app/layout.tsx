@@ -2,10 +2,17 @@ import { Inter as FontSans } from "next/font/google"
 import localFont from "next/font/local"
 
 import "@/styles/globals.css"
+import Link from "next/link"
+
+import { marketingConfig } from "@/config/marketing"
 import { siteConfig } from "@/config/site"
 import { absoluteUrl, cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 import { Toaster } from "@/components/ui/toaster"
 import { Analytics } from "@/components/analytics"
+import { MainNav } from "@/components/main-nav"
+import { ModeToggle } from "@/components/mode-toggle"
+import { SiteFooter } from "@/components/site-footer"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
@@ -83,7 +90,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <div className="flex min-h-screen flex-col">
+            <header className="container z-40 bg-background">
+              <div className="flex h-20 items-center justify-between py-6">
+                <MainNav items={marketingConfig.mainNav} />
+                <ModeToggle />
+              </div>
+            </header>
+            <main className="flex-1">{children}</main>
+          </div>
           <Analytics />
           <Toaster />
           <TailwindIndicator />
