@@ -97,7 +97,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <ModeToggle />
               </div>
             </header>
-            <main className="flex-1">{children}</main>
+            <main className="flex flex-1 items-center justify-center">{children}</main>
           </div>
           <Analytics />
           <Toaster />
